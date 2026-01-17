@@ -1,73 +1,131 @@
-# React + TypeScript + Vite
+# 🍅 ポモドーロペット (Pomodoro Pet App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ポモドーロタイマーとペット育成を組み合わせたWebアプリケーション。作業を続けるとペットが成長して、モチベーションが上がります！
 
-Currently, two official plugins are available:
+## ✨ 機能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ポモドーロタイマー
+- **カスタマイズ可能な時間設定**
+  - 作業時間: デフォルト30分（変更可能）
+  - 短い休憩: デフォルト5分（変更可能）
+  - 長い休憩: デフォルト15分（変更可能）
+- **セッション管理**
+  - 4セッション（作業→短い休憩）× 4回
+  - 4セッション完了後は長い休憩（15分）
+  - 長い休憩後、セッションカウントが自動リセット
+- **視覚的フィードバック**
+  - 円形プログレスバー
+  - セッションカウンター表示（x/4）
+  - モード別の色分け（作業/短い休憩/長い休憩）
 
-## React Compiler
+### ペット育成システム
+- **成長メカニズム**
+  - 1ポモドーロ完了で経験値獲得
+  - レベルアップでペットの見た目が変化
+  - 成長段階: 🥚 卵 → 🐣 幼体 → 🐶 成体
+- **経験値バー**
+  - 次のレベルまでの進捗を視覚的に表示
+  - レベルアップ時のアニメーション
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### データ永続化
+- LocalStorageによるデータ保存
+- ペットの状態（レベル、経験値）
+- 累計ポモドーロ数
+- 累計作業時間
+- カスタム設定
 
-## Expanding the ESLint configuration
+### その他
+- ダークモード対応
+- ブラウザ通知（オプション）
+- 通知音（オプション）
+- レスポンシブデザイン
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🚀 セットアップ
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 必要な環境
+- Node.js 18以上
+- npm または yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### インストール
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# リポジトリをクローン
+git clone https://github.com/RyoyaOdaka/pomodoro-pet-app.git
+cd pomodoro-pet-app
+
+# 依存関係をインストール
+npm install
+
+# 開発サーバーを起動
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ブラウザで http://localhost:5173/ にアクセスしてください。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 ビルド
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# 本番用ビルド
+npm run build
+
+# ビルドをプレビュー
+npm run preview
 ```
+
+## 🌐 デプロイ
+
+### Vercelへのデプロイ
+
+1. Vercelにログイン:
+```bash
+vercel login
+```
+
+2. プロジェクトをデプロイ:
+```bash
+vercel --prod
+```
+
+または、GitHubリポジトリを [Vercel](https://vercel.com) に接続して自動デプロイを設定できます。
+
+## 🎨 技術スタック
+
+- **フロントエンド**: React 18 + TypeScript
+- **ビルドツール**: Vite
+- **スタイリング**: Tailwind CSS
+- **データ保存**: LocalStorage
+- **状態管理**: React Hooks (useReducer, useState)
+
+## 📖 使い方
+
+1. **タイマーを開始**: 「開始」ボタンをクリック
+2. **作業に集中**: タイマーが作業時間をカウントダウン
+3. **休憩を取る**: 作業時間終了後、自動的に休憩モードに切り替わり
+4. **ペットの成長を楽しむ**: ポモドーロ完了でペットが経験値を獲得
+5. **設定をカスタマイズ**: 右上の歯車アイコンから時間設定を変更
+
+### セッションサイクル
+```
+セッション1: 作業(30分) → 短い休憩(5分)
+セッション2: 作業(30分) → 短い休憩(5分)
+セッション3: 作業(30分) → 短い休憩(5分)
+セッション4: 作業(30分) → 長い休憩(15分) → リセット
+```
+
+## 🎯 今後の拡張機能案
+
+- [ ] 複数のペットキャラクター選択
+- [ ] 実績・バッジシステム
+- [ ] 詳細な統計グラフ
+- [ ] BGM・環境音機能
+- [ ] バックエンド連携（ユーザー登録、クラウド保存）
+- [ ] ペットにアイテムを与える機能
+- [ ] 友達とペットを見せ合う機能
+
+## 📄 ライセンス
+
+MIT License
+
+## 🙏 クレジット
+
+Built with ❤️ using React, TypeScript, and Tailwind CSS
