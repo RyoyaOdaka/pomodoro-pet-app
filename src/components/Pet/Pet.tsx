@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PetState } from '../types';
+import type { PetState } from '../../types';
 import { getPetEmoji, getExperienceProgress } from '../../utils/petLeveling';
 
 interface PetProps {

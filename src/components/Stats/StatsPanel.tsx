@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Stats } from '../types';
+import type { Stats } from '../../types';
 
 interface StatsPanelProps {
   stats: Stats;
